@@ -134,6 +134,7 @@ class Logic : ObservableObject {
             displayNum = ""
             number1 = 0
             displayNum = "Error"
+            displayCalculation = ""
         } else {
             number1 = Float(displayNum) ?? 0
         }
@@ -174,6 +175,9 @@ class Logic : ObservableObject {
     private func formatNumber(_ number: String) -> String {
         var result = number.replacingOccurrences(of: "0+$", with: "", options: .regularExpression) //Entfernt alle Nullen am Ende
         result = result.replacingOccurrences(of: "\\.$", with: "", options: .regularExpression) // Entfernt '.' falls es am Ende übrig bleibt
+        if (result == "-0") {
+            result = "0"
+        }
         return result
     }
     
