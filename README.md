@@ -3,4 +3,4 @@
 A simple Calculator in Swift for iPhone. 
 
 ## ✨Example
-![Screenshot](iPhone-Mockup.png)
+![Screenshot](images/iPhone-Mockup.png)
