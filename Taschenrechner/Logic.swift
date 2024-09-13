@@ -15,7 +15,7 @@ class Logic : ObservableObject {
 
     init() {
         self.displayNum = ""
-        self.displayCalculation = " "
+        self.displayCalculation = ""
         self.number1 = 0
         self.number2 = 0
         self.operatorType = .none
@@ -36,12 +36,12 @@ class Logic : ObservableObject {
 
     func setOperator(_ op: Operator) {
         operatorType = op
-        displayNum = " "
+        displayNum = ""
         setDisplayCalculation(1)
         if isMonoOperator(op) {
             result()
         } else {
-            displayNum = " "
+            displayNum = ""
         }
     }
 
@@ -57,13 +57,13 @@ class Logic : ObservableObject {
         number1 = 0
         number2 = 0
         operatorType = .none
-        displayNum = " "
+        displayNum = ""
         displayCalculation = ""
     }
 
     func deleteChar() {
         if displayNum.count <= 1 {
-            displayNum = " "
+            displayNum = ""
         } else {
             displayNum = String(displayNum.dropLast())
         }
@@ -82,14 +82,14 @@ class Logic : ObservableObject {
             } else {
                 displayNum = "-" + displayNum
             }
-            changeActiveNumber(Float(displayNum) ?? 0)
+            changeActiveNumber((displayNum as NSString).floatValue)
         }
         
-        //Delets the previous calculation if the calculation result gets changed
         if operatorType == .none {
             displayCalculation = ""
         }
     }
+
 
     func result() {
         var result: Float
@@ -130,10 +130,10 @@ class Logic : ObservableObject {
         //Show calculation for the result
         setDisplayCalculation(2)
         
-        if displayNum.contains("inf") {
-            displayNum = " "
+        if displayNum.contains("inf") || displayNum.contains("nan") {
+            displayNum = ""
             number1 = 0
-            displayNum = "Nicht möglich"
+            displayNum = "Error"
         } else {
             number1 = Float(displayNum) ?? 0
         }

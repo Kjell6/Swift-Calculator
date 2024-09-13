@@ -45,7 +45,7 @@ struct ContentView: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .lineLimit(1)  // Begrenze auf eine Zeile
                         .minimumScaleFactor(0.5)  // Verkleinert den Text bis zur Hälfte der ursprünglichen Größe
-                    Text(logic.displayNum)
+                    Text(logic.displayNum == "" ? " " : logic.displayNum)
                         .font(.system(size: 80))
                         .foregroundColor(Color("ForegroundColor"))
                         .frame(maxWidth: .infinity, alignment: .trailing)
